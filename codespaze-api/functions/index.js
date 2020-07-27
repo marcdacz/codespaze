@@ -1,9 +1,7 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
-admin.initializeApp({
-    credential: admin.credential.cert(require("../keys/admin.json")),
-});
+admin.initializeApp();
 
 exports.getPosts = functions.region("australia-southeast1").https.onRequest((req, res) => {
     admin

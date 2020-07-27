@@ -1,0 +1,55 @@
+{
+	"info": {
+		"_postman_id": "4876683f-8506-4f7d-8da3-f062fb48ef7b",
+		"name": "codespaze",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getPosts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://{{baseurl}}/getPosts",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"getPosts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createPost",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"body\": \"New Post {{$guid}}\",\r\n    \"username\": \"marcdacz\",\r\n    \"createdAt\": \"{{$randomDateRecent}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{baseurl}}/createPost",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"createPost"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
