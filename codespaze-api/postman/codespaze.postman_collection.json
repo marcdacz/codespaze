@@ -6,25 +6,25 @@
 	},
 	"item": [
 		{
-			"name": "getPosts",
+			"name": "GET Posts",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{protocol}}://{{baseurl}}/getPosts",
+					"raw": "{{protocol}}://{{baseurl}}/posts",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{baseurl}}"
 					],
 					"path": [
-						"getPosts"
+						"posts"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "createPost",
+			"name": "ADD Post",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -38,13 +38,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{protocol}}://{{baseurl}}/createPost",
+					"raw": "{{protocol}}://{{baseurl}}/post",
 					"protocol": "{{protocol}}",
 					"host": [
 						"{{baseurl}}"
 					],
 					"path": [
-						"createPost"
+						"post"
 					]
 				}
 			},

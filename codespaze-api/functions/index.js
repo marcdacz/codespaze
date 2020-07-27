@@ -3,7 +3,10 @@ const admin = require("firebase-admin");
 
 admin.initializeApp();
 
-exports.getPosts = functions.region("australia-southeast1").https.onRequest((req, res) => {
+const express = require("express");
+const app = express();
+
+app.get("/posts", (req, res) => {
     admin
         .firestore()
         .collection("posts")
@@ -18,7 +21,7 @@ exports.getPosts = functions.region("australia-southeast1").https.onRequest((req
         .catch((err) => console.error(err));
 });
 
-exports.createPost = functions.region("australia-southeast1").https.onRequest((req, res) => {
+app.post("/post", (req, res) => {
     const newPost = {
         body: req.body.body,
         username: req.body.username,
@@ -37,3 +40,5 @@ exports.createPost = functions.region("australia-southeast1").https.onRequest((r
             console.error(err);
         });
 });
+
+exports.api = functions.region("australia-southeast1").https.onRequest(app);
