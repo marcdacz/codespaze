@@ -1,7 +1,9 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
-admin.initializeApp();
+admin.initializeApp({
+    credential: admin.credential.cert(require("../keys/admin.json")),
+});
 
 exports.getPosts = functions.region("australia-southeast1").https.onRequest((req, res) => {
     admin
@@ -16,4 +18,24 @@ exports.getPosts = functions.region("australia-southeast1").https.onRequest((req
             return res.json(posts);
         })
         .catch((err) => console.error(err));
+});
+
+exports.createPost = functions.region("australia-southeast1").https.onRequest((req, res) => {
+    const newPost = {
+        body: req.body.body,
+        username: req.body.username,
+        createdAt: admin.firestore.Timestamp.fromDate(new Date()),
+    };
+
+    admin
+        .firestore()
+        .collection("posts")
+        .add(newPost)
+        .then((doc) => {
+            return res.json({ message: `document ${doc.id} created successfully` });
+        })
+        .catch((err) => {
+            res.status(500).json({ error: `something went wrong` });
+            console.error(err);
+        });
 });
